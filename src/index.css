@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #F6F1E8;
+  --color-dark: #0B0B0B;
+  --color-gold: #CBAA5E;
+  --color-gold-light: #DFC27E;
+  --color-gold-dark: #A8883B;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-serif: 'Playfair Display', Georgia, serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+  body {
+    font-family: var(--font-sans);
+    background-color: #F6F1E8;
+    color: #0B0B0B;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+/* Subtle 6px floating avatar loop */
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.avatar-float {
+  animation: floatGentle 4.5s ease-in-out infinite;
+}
+
+/* Phone mockup hover tilt */
+.phone-tilt {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
+}
+
+.phone-tilt:hover {
+  transform: translateY(-6px) rotate(1.2deg);
+}
+
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .avatar-float {
+    animation: none !important;
+    transform: none !important;
+  }
+  .phone-tilt:hover {
+    transform: none !important;
+  }
+  .reveal-section {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
